@@ -2,10 +2,10 @@
 
 global proc fractal(){ 
 	vector $generator[];
-	$generator = getPoints("curv2"); 
+	$generator = getPoints("curv1"); 
 	vector $base[];
 	string $list[];
-	$list = `ls -transforms "curv1"`;
+	$list = `ls -transforms "curv2"`;
 	// get all the objects in maya (except the first one) 
 	for($j=1; $j<size($list); $j++){ //for all objects
 		$base_name = $list[($j)];
