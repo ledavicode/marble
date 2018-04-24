@@ -1,0 +1,17 @@
+// marble-recreation
+
+global proc fractal(){ 
+	vector $generator[];
+	$generator = getPoints("curv2"); 
+	vector $base[];
+	string $list[];
+	$list = `ls -transforms "curv1"`;
+	// get all the objects in maya (except the first one) 
+	for($j=1; $j<size($list); $j++){ //for all objects
+		$base_name = $list[($j)];
+		$base = getPoints($base_name);
+		eval("delete " + $base_name);
+			for($i=0; $i<(size($base)-1); $i++) 
+				replace($base[$i], $base[($i+1)], $generator);
+	}
+}
