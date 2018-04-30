@@ -1,0 +1,42 @@
+select -all;
+delete;
+
+int $AllPositionAscii[];
+int $AllPositionAlphabet[];
+
+
+
+
+string $input = "ein brennender peterwagen vor rewe";
+$strSize=size($input);
+
+$ascii = "qwertzuiopasdfghjklyxcvbnm ";
+
+$alphabet = "abcdefghijklmnopqrstuvwxyz ";
+
+
+for($i=1; $i<=$strSize; $i++){
+    $letter = substring($input, $i, $i);
+
+    for ($t=1; $t <= (size($ascii)); $t++){
+        if ($letter == (substring($ascii, $t, $t)) ) {
+        $AllPositionAscii[($i-1)] = $t; 
+        //print ($t+"\n");
+        }
+    }    
+    for ($t=1; $t <= (size($alphabet)); $t++){    
+        if ($letter == (substring($alphabet, $t, $t)) ) {
+        $AllPositionAlphabet[($i-1)] = $t; 
+        //print ($t+"\n");
+        }
+
+    }
+};
+
+
+
+print $AllPositionAscii;
+
+for ($t=1; $t <= ($strSize); $t++){
+curve -d 1 -p $AllPositionAscii[($t-1)] $AllPositionAlphabet[($t-1)] (rand($strSize));
+}
