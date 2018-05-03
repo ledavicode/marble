@@ -1,13 +1,33 @@
 select -all;
 delete;
 
+// promptDialog //
+
+string $text;
+string $result;
+
+$result = `promptDialog  
+-title "Get Information"  
+-message "What do you see?"  
+-button "OK" 
+-button "Cancel"   
+-defaultButton "OK" 
+-cancelButton "Cancel"   
+-dismissString "Cancel"`;  
+
+if ($result == "OK") {
+    $text = `promptDialog -query -text`;
+};
+
+
+
 int $AllPositionAscii[];
 int $AllPositionAlphabet[];
 
 
 
 
-string $input = "ein brennender peterwagen vor rewe";
+string $input = $text;
 $strSize=size($input);
 
 $ascii = "qwertzuiopasdfghjklyxcvbnm ";
@@ -38,5 +58,5 @@ for($i=1; $i<=$strSize; $i++){
 print $AllPositionAscii;
 
 for ($t=1; $t <= ($strSize); $t++){
-curve -d 1 -p $AllPositionAscii[($t-1)] $AllPositionAlphabet[($t-1)] (rand($strSize));
+curve -d 1 -p $AllPositionAscii[($t-1)] $AllPositionAlphabet[($t-1)] 0;
 }
