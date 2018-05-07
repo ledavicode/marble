@@ -17,7 +17,7 @@ $result = `promptDialog
 
 if ($result == "OK") {
     $text = `promptDialog -query -text`;
-};
+}; // type in an fictional picture or scene description
 
 
 
@@ -41,22 +41,30 @@ for($i=1; $i<=$strSize; $i++){
     for ($t=1; $t <= (size($ascii)); $t++){
         if ($letter == (substring($ascii, $t, $t)) ) {
         $AllPositionAscii[($i-1)] = $t; 
-        //print ($t+"\n");
         }
     }    
     for ($t=1; $t <= (size($alphabet)); $t++){    
         if ($letter == (substring($alphabet, $t, $t)) ) {
         $AllPositionAlphabet[($i-1)] = $t; 
-        //print ($t+"\n");
         }
 
     }
-};
+}; /* converts the letters of the fictional description into arrays of numbers: 
+    -one based one the position in the alphabet - $AllPositionAlphabet
+    -one based on the position in the ascii - $AllPositionAscii */
 
-
+print $AllPositionAlphabet;
 
 print $AllPositionAscii;
 
+curve -d 1 -p 0 0 0 -p 3 (rand(-2,2)) 0 -p 6 (rand(-2,2)) 0 -p 9 0 0; // makes the (random) Gernerator
+
 for ($t=1; $t <= ($strSize); $t++){
-curve -d 1 -p $AllPositionAscii[($t-1)] $AllPositionAlphabet[($t-1)] 0;
-}
+$inhalt = `curve -d 1 -p $AllPositionAlphabet[($t-1)] $AllPositionAscii[($t-1)] 0`;
+$base[$t] = $inhalt;
+} /* is supposed to make the Base from the arrays $AllPositionAlphabet (x) 
+    and $AllPositionAscii (y) */
+    // BUT IT OBVIOUSLY DOESN'T WORK!!! 
+    
+    // Wierd unselectable points instead of a curve...
+
